@@ -4,8 +4,7 @@ A single-page sticky notes desktop application built with **React** and **TypeSc
 
 ---
 
-## Architecture Overview (Submission Description)
-
+## Architecture Overview
 The application follows a simple data flow centered around a flat array of note objects (`Note[]`) stored in React state. Each note stores its position (`x`, `y`), dimensions (`width`, `height`), `text`, `color`, and `zIndex`. The entire layout consists of a top control bar (header) and an interactive canvas workspace, avoiding external frameworks or state libraries to keep the codebase lean and easy to maintain.
 
 Dragging and resizing are implemented using native DOM mouse events (`onMouseDown`, `mousemove`, `mouseup`). When an interaction begins, a `dragState` object records the starting mouse coordinates and the note's initial dimensions/position. Global `mousemove` and `mouseup` listeners registered on the `window` calculate coordinate deltas, enabling continuous movement and resizing without losing tracking even when the pointer moves quickly. Resizing is constrained to reasonable minimum dimensions to prevent inverted or invisible elements.

@@ -1,4 +1,4 @@
-# Sticky Notes — Interview Solution
+# Sticky Notes
 
 A single-page sticky notes desktop application built with **React** and **TypeScript**, without any external component or drag-and-drop libraries.
 

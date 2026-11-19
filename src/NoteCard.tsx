@@ -19,7 +19,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
   onStartResize,
   onUpdateText,
   onUpdateColor,
-  onDelete,
+  // onDelete,
   onBringToFront,
 }) => {
   return (
@@ -59,7 +59,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
         </div>
 
         {/* Delete button */}
-        <button
+        {/* <button
           type="button"
           className="delete-btn"
           onClick={(e) => {
@@ -68,7 +68,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
           }}
         >
           ✕
-        </button>
+        </button> */}
       </div>
 
       {/* Note body with text editing */}

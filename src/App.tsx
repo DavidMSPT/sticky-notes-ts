@@ -37,7 +37,7 @@ export const App: React.FC = () => {
   const [isSyncing, setIsSyncing] = useState<boolean>(false);
   const [isOverTrash, setIsOverTrash] = useState<boolean>(false);
 
-  // Form state for Feature 1 (Specified size at specified position)
+  // Form state (Specified size at specified position)
   const [newX, setNewX] = useState<number>(150);
   const [newY, setNewY] = useState<number>(150);
   const [newWidth, setNewWidth] = useState<number>(200);
@@ -46,7 +46,7 @@ export const App: React.FC = () => {
   const trashRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  // 2. Persistence: LocalStorage & simulated async REST API (Bonus III & V)
+  // 2. Persistence: LocalStorage & simulated async REST API
   useEffect(() => {
     localStorage.setItem('simple_sticky_notes', JSON.stringify(notes));
 
@@ -63,7 +63,7 @@ export const App: React.FC = () => {
     setNotes(updater);
   };
 
-  // 3. Feature 1: Create a new note of specified size at specified position
+  // 3. Create a new note of specified size at specified position
   const handleCreateNote = (e: React.FormEvent) => {
     e.preventDefault();
     updateNotes((prev) => {
@@ -82,7 +82,7 @@ export const App: React.FC = () => {
     });
   };
 
-  // 4. Bonus II: Bring note to front (highest z-index)
+  // 4. Bring note to front (highest z-index)
   const bringToFront = (id: string) => {
     updateNotes((prev) => {
       const highestZ = Math.max(0, ...prev.map((n) => n.zIndex));
@@ -150,7 +150,7 @@ export const App: React.FC = () => {
         const nextX = Math.min(Math.max(0, dragState.initialX + deltaX), maxX);
         const nextY = Math.min(Math.max(0, dragState.initialY + deltaY), maxY);
 
-        // Feature 4: Check if note intersects trash zone
+        // Check if note intersects trash zone
         const trash = trashRef.current;
         if (trash) {
           const isColliding =
@@ -187,7 +187,6 @@ export const App: React.FC = () => {
       if (dragState.mode === 'move' && isOverTrash) {
         updateNotes((prev) => prev.filter((n) => n.id !== dragState.noteId));
       } else {
-        // Commit final change to persistence
         setIsSyncing(true);
       }
       setDragState(null);
@@ -222,7 +221,7 @@ export const App: React.FC = () => {
       <header className="app-toolbar">
         <h1 className="app-title">Sticky Notes</h1>
 
-        {/* Feature 1: Controls to create note of specified size & position */}
+        {/* Controls to create note of specified size & position */}
         <form className="create-form" onSubmit={handleCreateNote}>
           <label>
             X:
@@ -261,7 +260,7 @@ export const App: React.FC = () => {
           </button>
         </form>
 
-        {/* Sync status badge (Bonus V) */}
+        {/* Sync status badge */}
         <div className="sync-badge">
           <span className={`sync-dot ${isSyncing ? 'syncing' : 'saved'}`} />
           {isSyncing ? 'Syncing...' : 'Saved'}
@@ -283,7 +282,7 @@ export const App: React.FC = () => {
           />
         ))}
 
-        {/* Feature 4: Predefined Trash Zone */}
+        {/* Trash Zone */}
         <div
           ref={trashRef}
           className={`trash-zone ${isOverTrash ? 'hovered' : ''}`}
